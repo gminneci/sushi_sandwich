@@ -16,6 +16,8 @@ The training is done in the train_model.py script (there is also a notebook vers
 
 The model would benefit from some improvements before ready for deployment. Namely, more advanced transformation of the images, collecting more samples and fine tuning the parameters, as well as running a longer training time.
 
+From a technical point of view, the model should be reformatted so that it can learn incrementally and the testing script below should be written as an API for ease of use.
+
 # Testing
 
 Another script (+ notebook) called is_sushi.py is provided. The script loads the trained model, then accepts an image as input (from the set provided or otherwise) and plots it alongside the model's prediction. This can be easily adapted into an API, batched for performance and so on.
