@@ -10,14 +10,29 @@ To train the model, the images are converted to grayscale (given that the number
 
 The model is trained using cross entropy, although during training the train / test AUC is also computed. The model is not extremely accurate but it's usable - it achieves a test AUC > 0.8 after 500 training epochs, average cross-entropy < 0.1.
 
-The training is done in the train_model.py script (there is also a notebook version). The scripts expects only one parameter - the number of epochs to train on.
+The training is done in the train_model.py script (there is also a notebook version). The scripts expects only one parameter - the number of epochs to train on. Please ote that it was written for GPUs and may be very slow to train on CPUs.
+```sh
+$ python train_model.py 100
+```
+or, if using notebooks:
+```sh
+$ python-notebook train_model.ipynb
+```
 
 # Improvements
 
-The model would benefit from some improvements before ready for deployment. Namely, more advanced transformation of the images, collecting more samples and fine tuning the parameters, as well as running a longer training time.
+The model would benefit from some improvements before deployment. Namely, more advanced transformation of the images, collecting more samples and fine tuning the parameters, as well as running a longer training time.
 
-From a technical point of view, the model should be reformatted so that it can learn incrementally and the testing script below should be written as an API for ease of use.
+From a technical point of view, the model should be refactored so that it can learn incrementally and the testing script below should be written as an API for ease of use.
 
 # Testing
 
 Another script (+ notebook) called is_sushi.py is provided. The script loads the trained model, then accepts an image as input (from the set provided or otherwise) and plots it alongside the model's prediction. This can be easily adapted into an API, batched for performance and so on.
+```sh
+$ python is_sushi.py
+```
+or, if using notebooks:
+```sh
+$ python-notebook is_sushi.ipynb
+```
+
