@@ -10,7 +10,7 @@ To train the model, the images are converted to grayscale (given that the number
 
 The model is trained using cross entropy, although during training the train / test AUC is also computed. The model is not extremely accurate but it's usable - it achieves a test AUC > 0.8 after 500 training epochs, average cross-entropy < 0.1.
 
-The training is done in the train_model.py script (there is also a notebook version). The scripts expects only one parameter - the number of epochs to train on. Please ote that it was written for GPUs and may be very slow to train on CPUs.
+The training is done in the train_model.py script (there is also a notebook version). The same script also downloads and pre-processes the images; it expects only one parameter - the number of epochs to train on. Please ote that it was written for GPUs and may be very slow to train on CPUs.
 ```sh
 $ python train_model.py 100
 ```
@@ -27,7 +27,7 @@ From a technical point of view, the model should be refactored so that it can le
 
 # Testing
 
-Another script (+ notebook) called is_sushi.py is provided. The script loads the trained model, then accepts an image as input (from the set provided or otherwise) and plots it alongside the model's prediction. This can be easily adapted into an API, batched for performance and so on.
+Another script (+ notebook) called is_sushi.py is provided. The script loads the trained model, then accepts a jpg image as input (from the set provided or otherwise) and plots it alongside the model's prediction. This can be easily adapted into an API, batched for performance and so on.
 ```sh
 $ python is_sushi.py
 ```
