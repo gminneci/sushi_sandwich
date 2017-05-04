@@ -6,12 +6,12 @@ from glob import glob
 from sklearn.metrics import roc_auc_score
 import urllib.request as url_req
 
-os.chdir("/home/bean/sushi_sandwich_local")
+#os.chdir("/home/bean/sushi_sandwich_local")
 
 from utils import rescale, weight_variable, bias_variable, conv2d, max_pool, tmp_image_file, model_file, max_shape, image_url
 
 # PARAMETERS
-n_epochs = 10#int(sys.argv[1])
+n_epochs = int(sys.argv[1])
 
 # CNN parameters
 n_convo_layer1 = 32
@@ -23,19 +23,17 @@ percep_size = 1024
 batch_len = 50
 
 ### rescale the images + add rotations
-def extract_zip(input_zip):
-    input_zip=ZipFile(input_zip)
-    return {name: input_zip.read(name) for name in input_zip.namelist()}
-
 
 if os.path.exists(tmp_image_file):
     images = pickle.load(open(tmp_image_file, "rb"))
     
 else:
     print("Downloading %s..." % image_url)
+    
     zipped_data = url_req.urlopen(image_url).read()
     zip_file = zipfile.ZipFile(io.BytesIO(zipped_data))
     zip_file.extractall()
+    
     parent_dir = zip_file.namelist()[0].split("/")[0]
     image_path = parent_dir + "/%s/*"
     
